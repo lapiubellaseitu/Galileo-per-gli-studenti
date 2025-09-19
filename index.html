@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,12 +16,14 @@
     h1{margin:0; font-size:1.6rem}
     p.lead{margin:4px 0 16px; color:#555}
 
+    /* Cartoon area */
     .cartoon{background:linear-gradient(180deg,#fff 0%, #eef6ff 100%); border-radius:14px; padding:18px; box-shadow:0 8px 24px rgba(20,30,70,0.06)}
     .strip{display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center}
     .bubble{background:var(--card-bg); padding:12px; border-radius:10px; font-size:0.98rem}
     .panel{display:flex; gap:12px; align-items:center}
     .avatar{width:110px; height:110px; border-radius:12px; background:linear-gradient(135deg,#fdf6e3,#e8f7ff); display:flex; align-items:center; justify-content:center; font-size:48px}
 
+    /* Buttons */
     .buttons{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
     button.big{border:0; padding:14px 18px; border-radius:10px; color:white; font-weight:600; cursor:pointer; box-shadow:0 6px 18px rgba(50,50,93,0.08)}
     button.pink{background:var(--pink)}
@@ -29,9 +31,17 @@
     button.yellow{background:var(--yellow); color:#222}
     button.blue{background:var(--blue)}
 
+    /* Content area */
     main{display:grid; grid-template-columns:1fr 380px; gap:16px; margin-top:18px}
     .main-panel{background:var(--card-bg); padding:16px; border-radius:12px; min-height:280px}
     .side-panel{background:linear-gradient(180deg,#fff,#fcfcff); padding:14px; border-radius:12px}
+
+    pre.txt{white-space:pre-wrap; font-family:inherit; background:#f7f9fc; padding:12px; border-radius:8px}
+
+    /* Modal */
+    .overlay{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(14,20,30,0.45)}
+    .modal{background:white; border-radius:12px; padding:18px; width:min(900px,96%); max-height:86vh; overflow:auto}
+    .close{float:right; cursor:pointer; font-weight:700}
 
     footer{margin-top:18px; color:#666; font-size:0.9rem}
 
@@ -42,8 +52,8 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Galileo Galilei — Un cartoon interattivo</h1>
-        <p class="lead">Clicca i pulsanti colorati per scoprire di più su Galileo.</p>
+        <h1>Galileo Galilei — A short cartoon for students (ENGLISH + emojis)</h1>
+        <p class="lead">Interactive mini-webapp created for a class of 17-year-old students. Click the colored buttons to explore.</p>
       </div>
     </header>
 
@@ -52,14 +62,15 @@
         <div class="panel">
           <div class="avatar">🔭</div>
           <div class="bubble">
-            <strong>Galileo dice:</strong> "Osserva con i tuoi occhi e con i tuoi strumenti!" 🤓✨
+            <strong>Galileo says:</strong> "Look with your eyes and your instruments!" 🤓✨
+            <div style="margin-top:8px; font-size:0.9rem; color:#444">He changed how we test ideas — not by arguing, but by observing and measuring.</div>
           </div>
         </div>
 
         <div class="panel">
           <div class="avatar">🧪</div>
           <div class="bubble">
-            <strong>Nota:</strong> Galileo migliorò il telescopio e studiò il cielo — lune, fasi e molto altro. 🌕🪐
+            <strong>Cartoon note:</strong> Galileo improved the telescope and used it to study the sky — moons, phases, and more. 🌕🪐
           </div>
         </div>
       </div>
@@ -74,62 +85,17 @@
 
     <main>
       <section class="main-panel" id="content">
-        <h2>Benvenuto! 👋</h2>
-        <p>Usa i pulsanti qui sopra per esplorare la vita e le idee di Galileo.</p>
+        <h2>Welcome! 👋</h2>
+        <p>Use the buttons above to explore Galileo's life and work. Content will appear here (texts, audio, images, videos).</p>
+        <div id="dynamicArea"></div>
       </section>
 
       <aside class="side-panel">
-        <h3>Curiosità veloci</h3>
+        <h3>Quick Facts</h3>
         <ul>
-          <li>Nato: 1564 🇮🇹</li>
-          <li>Strumenti chiave: telescopio, esperimenti</li>
-          <li>Idea principale: misurare & testare, non solo discutere</li>
+          <li>Born: 1564 🇮🇹</li>
+          <li>Key tools: telescope, experiments</li>
+          <li>Big idea: measure & test, not only argue</li>
         </ul>
-      </aside>
-    </main>
-
-    <footer>
-      Mini-webapp didattica su Galileo Galilei
-    </footer>
-  </div>
-
-  <script>
-    const content = document.getElementById("content");
-
-    document.getElementById("btnListen").addEventListener("click", () => {
-      content.innerHTML = `
-        <h2>Ascolta Galileo 🔊</h2>
-        <audio controls>
-          <source src="assets/galileo.mp3" type="audio/mpeg">
-          Il tuo browser non supporta l'audio.
-        </audio>
-      `;
-    });
-
-    document.getElementById("btnMethod").addEventListener("click", () => {
-      content.innerHTML = `
-        <h2>Il metodo scientifico 📐</h2>
-        <p>Galileo introdusse l'osservazione e la misurazione come basi del sapere scientifico.</p>
-        <img src="assets/method.png" alt="Metodo di Galileo" style="max-width:100%; border-radius:12px;">
-      `;
-    });
-
-    document.getElementById("btnHeirs").addEventListener("click", () => {
-      content.innerHTML = `
-        <h2>I miei eredi 👨‍🔬👩‍🔬</h2>
-        <p>Dopo Galileo, molti scienziati hanno seguito il suo approccio sperimentale.</p>
-      `;
-    });
-
-    document.getElementById("btnSpace").addEventListener("click", () => {
-      content.innerHTML = `
-        <h2>Verso lo spazio 🚀</h2>
-        <video controls width="100%">
-          <source src="assets/space.mp4" type="video/mp4">
-          Il tuo browser non supporta i video.
-        </video>
-      `;
-    });
-  </script>
-</body>
-</html>
+        <hr>
+        <h4>How to
